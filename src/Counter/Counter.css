@@ -1,0 +1,49 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(41,44,53);
+    height: 300px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(94,170,195);
+}
+.inner-box-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(41,44,53);
+    font-size: 25px;
+    color: rgb(94,170,195);
+    height: 100px;
+    width: 350px;
+    border-radius: 10px;
+    border: 2px solid rgb(94,170,195);
+}
+.inner-box-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 75px;
+    background-color: rgb(41,44,53);
+    border-radius: 10px;
+    border: 2px solid rgb(94,170,195);
+}
+.value-box{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 10px;
+}
+input{
+    text-align: center;
+    width: 50px;
+    height: 20px;
+}
+.error{
+    color: red;
+}
