@@ -1,6 +1,4 @@
-// Counter.tsx
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { increment, reset, setMin, setMax } from './Action';
 import './Counter.css'
@@ -20,9 +18,29 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
 
     useEffect(() => {
         if (count > max || count < min) {
-          reset();
+            reset();
         }
-      }, [count, max, min, reset]);
+    }, [count, max, min, reset]);
+
+
+
+    const MinInputRef = useRef<HTMLInputElement>(null);
+
+    const handleMinClick = () => {
+        if (MinInputRef.current) {
+            MinInputRef.current.select();
+        }
+    };
+
+    const MaxInputRef = useRef<HTMLInputElement>(null);
+
+    const handleMaxClick = () => {
+        if (MaxInputRef.current) {
+            MaxInputRef.current.select();
+        }
+    };
+
+
 
     const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMin(Number(e.target.value));
@@ -32,9 +50,11 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
         setMax(Number(e.target.value));
     };
 
+
     const counterStyle = {
         color: count >= max ? 'red' : 'rgb(94,170,195)'
-      };
+    };
+
 
     if (min > max) {
 
@@ -56,9 +76,12 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
                                 Min Value:
                             </span>
                             <input
+                                ref={MinInputRef}
+                                onClick={handleMinClick}
                                 type="number"
                                 value={min}
                                 onChange={handleMinChange}
+
                             />
                         </div>
                         <div className='value-box'>
@@ -66,17 +89,20 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
                                 Max Value:
                             </span>
                             <input
+                                ref={MaxInputRef}
+                                onClick={handleMaxClick}
                                 type="number"
                                 value={max}
                                 onChange={handleMaxChange}
+
                             />
                         </div>
                     </div>
                     <div className='inner-box-2'>
                         <Button
-                         disabled
-                         variant='contained'
-                         >
+                            disabled
+                            variant='contained'
+                        >
                             Set</Button>
                     </div>
                 </div>
@@ -88,7 +114,8 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
                     <div className='inner-box-2' style={{ justifyContent: "space-around" }}>
                         <Button
                             variant='contained'
-                            disabled                  
+                            disabled
+
                         >
                             Increment</Button>
                         <Button
@@ -121,15 +148,20 @@ const Counter: React.FC<Props> = ({ count, min, max, increment, reset, setMin, s
                             Min Value:
                         </span>
                         <input
+                            ref={MinInputRef}
+                            onClick={handleMinClick}
                             type="number"
                             value={min}
-                            onChange={handleMinChange} />
+                            onChange={handleMinChange}
+                        />
                     </div>
                     <div className='value-box'>
                         <span>
                             Max Value:
                         </span>
                         <input
+                            ref={MaxInputRef}
+                            onClick={handleMaxClick}
                             type="number"
                             value={max}
                             onChange={handleMaxChange}
